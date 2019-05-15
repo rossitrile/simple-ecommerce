@@ -1,0 +1,37 @@
+version: '3'
+services:
+  db:
+    image: 'postgres:latest'
+    environment:
+      - POSTGRES_PASSWORD=Lnt123456789
+      - POSTGRES_USER=rossi
+      - POSTGRES_MULTIPLE_DATABASE=industryconnect
+  onboard-app:
+    image: 'rossi93/industryconnect-onboard:latest'
+    environment:
+      - DBServer=db
+      - DBName=industryconnect
+      - DBUserId=rossi
+      - DBPassword=Lnt123456789
+      - ASPNETCORE_URLS=http://+:1000
+    ports:
+      - '1000:1000'
+# version: '3'
+# services:
+#   db:
+#     image: 'mcr.microsoft.com/mssql/server:2017-latest-ubuntu'
+#     environment:
+#       - ACCEPT_EULA=Y
+#       - SA_PASSWORD=Lnt@04780@!
+#       - MSSQL_PID=Express
+#   onboard-app:
+#     image: 'rossi93/industryconnect-onboard:latest'
+#     environment:
+#       - DBServer=db
+#       - DBName=IndustryConnect
+#       - DBUserId=sa
+#       - DBPassword=Lnt@04780@!
+#       - ASPNETCORE_URLS=http://+:1000
+#     ports:
+#       - '1000:1000'
+
